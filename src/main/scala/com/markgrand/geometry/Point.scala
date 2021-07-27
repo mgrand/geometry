@@ -14,6 +14,14 @@ case class Point (x: Double, y: Double) {
   def - (that: Point): Magnitude2d = Magnitude2d(this.x - that.x, this.y - that.y)
 
   /**
+   * The sum of a point and a magnitude
+   *
+   * @param magnitude2d the magnitude
+   * @return the sum as a point
+   */
+  def + (magnitude2d: Magnitude2d): Point = Point(x + magnitude2d.x, y + magnitude2d.y)
+
+  /**
    * Define the 2-dimensional vector cross product v × w to be v<sub>x</sub>w<sub>y</sub> − v<sub>y</sub>w<sub>x</sub>
    * as described in
    * <a href="https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect">stack
