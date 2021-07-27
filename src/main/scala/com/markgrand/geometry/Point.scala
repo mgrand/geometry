@@ -5,4 +5,6 @@ package com.markgrand.geometry
  * @param x abscissa
  * @param y ordinate
  */
-class Point (x: Double, y: Double)
+class Point (x: Double, y: Double) {
+  def isDegenerate: Boolean = {x == y}
+}
