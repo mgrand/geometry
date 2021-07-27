@@ -22,10 +22,9 @@ case class Point (x: Double, y: Double) {
   def + (magnitude2d: Magnitude2d): Point = Point(x + magnitude2d.x, y + magnitude2d.y)
 
   /**
-   * Define the 2-dimensional vector cross product v × w to be v<sub>x</sub>w<sub>y</sub> − v<sub>y</sub>w<sub>x</sub>
+   * Define the 2-dimensional vector cross product v × w to be v,,x,,w,,y,, − v,,y,,w,,x,,
    * as described in
-   * <a href="https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect">stack
-   * overflow</a>
+   * [[https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect]]
    *
    * @param that the other point
    * @return the cross product
