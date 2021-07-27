@@ -2,23 +2,23 @@ package com.markgrand.geometry
 
 import org.scalatest.FunSuite
 
-class LineSegmentTest extends FunSuite {
-  val A = new Point(3,4)
-  val B = new Point(6,8)
+class EuclideanVectorTest extends FunSuite {
+  private val A = Point(3,4)
+  private val B = Point(6,8)
 
   test("testB") {
-    val lineSegment = LineSegment(A,B)
+    val lineSegment = EuclideanVector(A,B)
     assert(lineSegment.b == B)
   }
 
   test("testA") {
-    val lineSegment = LineSegment(A,B)
+    val lineSegment = EuclideanVector(A,B)
     assert(lineSegment.a == A)
   }
 
   test("testIsDegenerate") {
-    val lineSegment = LineSegment(A,B)
-    val degenerate = LineSegment(A,A)
+    val lineSegment = EuclideanVector(A,B)
+    val degenerate = EuclideanVector(A,A)
     assert(degenerate.isDegenerate)
     assert(!lineSegment.isDegenerate)
   }

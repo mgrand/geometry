@@ -7,7 +7,7 @@ class PointTest extends FunSuite {
   private val p2 = Point(7,11)
 
   test("test$minus") {
-    assert((p2-p1) == Magnitude2d(4,7))
+    assert((p2-p1) == Point(4,7))
   }
 
   test( "cross") {

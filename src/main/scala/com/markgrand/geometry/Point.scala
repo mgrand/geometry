@@ -11,17 +11,24 @@ case class Point (x: Double, y: Double) {
   /**
    * The difference between two points
    * @param that the other point
-   * @return the difference as a magnitude
+   * @return the difference
    */
-  def - (that: Point): Magnitude2d = Magnitude2d(this.x - that.x, this.y - that.y)
+  def - (that: Point): Point = Point(this.x - that.x, this.y - that.y)
 
   /**
-   * The sum of a point and a magnitude
+   * The sum of two points
    *
-   * @param magnitude2d the magnitude
+   * @param that the magnitude
    * @return the sum as a point
    */
-  def + (magnitude2d: Magnitude2d): Point = Point(x + magnitude2d.x, y + magnitude2d.y)
+  def + (that: Point): Point = Point(this.x + that.x, this.y + that.y)
+
+  /**
+   * Multiple the point by a scalar
+   * @param n the scalar
+   * @return the product
+   */
+  def *(n: Double): Point = Point(x*n, y*n)
 
   /**
    * Define the 2-dimensional vector cross product v × w to be v,,x,,w,,y,, − v,,y,,w,,x,,
@@ -32,4 +39,11 @@ case class Point (x: Double, y: Double) {
    * @return the cross product
    */
   def cross(that: Point): Double = this.x*that.y - this.y*that.x
+
+  /**
+   * The dot product
+   * @param that the other point
+   * @return the dot product
+   */
+  def dot(that: Point): Double = this.x*that.x + this.y*that.y
 }
