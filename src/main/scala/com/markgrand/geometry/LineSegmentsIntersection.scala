@@ -2,6 +2,7 @@ package com.markgrand.geometry
 
 /**
  * Represent the intersection of two line segments
+ * @author Mark Grand
  */
 sealed abstract class LineSegmentsIntersection
 

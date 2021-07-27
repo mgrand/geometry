@@ -4,6 +4,8 @@ package com.markgrand.geometry
  * Represent a single point
  * @param x abscissa
  * @param y ordinate
+ *
+ * @author Mark Grand
  */
 case class Point (x: Double, y: Double) {
   /**
