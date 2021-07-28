@@ -53,6 +53,14 @@ class EuclideanVectorTest extends AnyFreeSpec {
           v2.intersection(v1)
         }
       }
+      "If they do intersect, the intersection point should be returned" in {
+        assertResult(IntersectionPoint(Point(2.0,2.0))) {
+          v1.intersection(EuclideanVector(Point(1,3), Point(3,1)))
+        }
+        assertResult(IntersectionPoint(Point(-2.0,-2.0))) {
+          v2.intersection(EuclideanVector(Point(-1,-3), Point(-3,-1)))
+        }
+      }
     }
   }
 
