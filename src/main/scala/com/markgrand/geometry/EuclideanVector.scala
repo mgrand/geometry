@@ -77,6 +77,12 @@ case class EuclideanVector(a: Point, b: Point) {
     else
       0.0
   }
+
+  def magnitude: Double = {
+    val xDelta = b.x - a.x
+    val yDelta = b.y - a.y
+    java.lang.Math.sqrt(xDelta * xDelta + yDelta * yDelta)
+  }
 }
 
 
