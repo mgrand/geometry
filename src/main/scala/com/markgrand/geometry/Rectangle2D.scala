@@ -48,7 +48,7 @@ class Rectangle2D(a: Point, b: Point, c: Point, d: Point) {
     val builder = Set.newBuilder[Point]
     def addIntersection(v1: EuclideanVector, v2: EuclideanVector): Unit = {
       v1 intersection v2 match {
-        case p :IntersectionPoint => builder += p
+        case p :IntersectionPoint => builder += p.point
         case _ =>
       }
     }
