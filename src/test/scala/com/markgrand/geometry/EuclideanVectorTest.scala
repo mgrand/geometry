@@ -45,7 +45,14 @@ class EuclideanVectorTest extends AnyFreeSpec {
       }
     }
     "Given two non-parallel vectors" - {
-
+      "If they do not intersect then recognize it" in {
+        assertResult(NoIntersection()) {
+          v1.intersection(v2)
+        }
+        assertResult(NoIntersection) {
+          v2.intersection(v1)
+        }
+      }
     }
   }
 

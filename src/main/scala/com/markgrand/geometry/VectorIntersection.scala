@@ -9,9 +9,11 @@ sealed abstract class VectorIntersection
 /**
  * Represent the intersection of two line segments that do not share any common points.
  */
-class NoIntersection() extends VectorIntersection
+class NoIntersection() extends VectorIntersection {
+  override def equals(obj: Any): Boolean = obj.isInstanceOf[NoIntersection]
+}
 
-object NoIntersection {
+object NoIntersection extends NoIntersection {
   def apply():NoIntersection = new NoIntersection()
 }
 
