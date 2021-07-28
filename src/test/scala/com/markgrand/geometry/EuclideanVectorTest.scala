@@ -22,12 +22,26 @@ class EuclideanVectorTest extends AnyFreeSpec {
     val v2 = EuclideanVector(Point(-1, -1), Point(-3, -3))
     "Given two collinear vectors" - {
       "if they don't overlap, then there is no intersection" in {
-        assert(NoIntersection() == v1.intersection(EuclideanVector(Point(4, 4), Point(6, 6))))
-        assert(NoIntersection() == v2.intersection(EuclideanVector(Point(-4, -4), Point(-6, -6))))
+        assertResult(NoIntersection()) {
+          v1.intersection(EuclideanVector(Point(4, 4), Point(6, 6)))
+        }
+        assertResult(NoIntersection()) {
+          v2.intersection(EuclideanVector(Point(-4, -4), Point(-6, -6)))
+        }
       }
       "If they do overlap, then the intersection should be an overlap" in {
-        assert(OverlappingVectors() == v1.intersection(EuclideanVector(Point(2, 2), Point(4, 4))))
-        assert(OverlappingVectors() == v2.intersection(EuclideanVector(Point(-2, -2), Point(-4, -4))))
+        assertResult(OverlappingVectors()) {
+          v1.intersection(EuclideanVector(Point(2, 2), Point(4, 4)))
+        }
+        assertResult(OverlappingVectors()) {
+          v2.intersection(EuclideanVector(Point(-2, -2), Point(-4, -4)))
+        }
+      }
+    }
+    "Given two parallel vectors, they should have no intersection" in {
+      assertResult(NoIntersection()) {
+        v1.intersection(EuclideanVector(Point(1, 2), Point(3, 4)))
+        v2.intersection(EuclideanVector(Point(-1, -2), Point(-3, -4)))
       }
     }
   }

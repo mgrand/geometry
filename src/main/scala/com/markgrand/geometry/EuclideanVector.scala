@@ -1,7 +1,5 @@
 package com.markgrand.geometry
 
-import com.markgrand.geometry.EuclideanVector.isZero
-
 /**
  * Represent a Euclidean vector as two points.
  *
@@ -41,8 +39,8 @@ case class EuclideanVector(a: Point, b: Point) {
         NoIntersection()
     }
 
-    if (isZero(rCrossS))
-      if (isZero(qMinusPCrossR)) // if vectors are collinear
+    if (Math.isZero(rCrossS))
+      if (Math.isZero(qMinusPCrossR)) // if vectors are collinear
         return collinear()
       else // parallel and non-intersecting
         return NoIntersection()
@@ -60,6 +58,4 @@ case class EuclideanVector(a: Point, b: Point) {
   }
 }
 
-object EuclideanVector {
-  private def isZero(d: Double): Boolean = d < 1e-10d
-}
+
