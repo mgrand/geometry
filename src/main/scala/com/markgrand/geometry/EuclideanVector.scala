@@ -22,7 +22,7 @@ case class EuclideanVector(a: Point, b: Point) {
    * @see LineSegmentsIntersection
    * @see OverlappingLineSegment
    */
-  def intersectionPoint(that: EuclideanVector): VectorIntersection = {
+  def intersection(that: EuclideanVector): VectorIntersection = {
     val p = a
     val q = that.a
     val r = b - p
@@ -31,8 +31,11 @@ case class EuclideanVector(a: Point, b: Point) {
     val qMinusPCrossR = (q - p) cross r
 
     def collinear() = {
-      val qMinusPDotR = (q - p) dot r
-      if ((0 <= qMinusPDotR && qMinusPDotR <= (r dot r)) || (0 <= ((p - q) dot s) && (((p - q) dot s) <= (s dot s))))
+      val t0 = ((q - p) dot r) / (r dot r)
+      val t1 = t0 + (s dot r) / (r dot r)
+      val tMin = t0 min t1
+      val tMax = t0 max t1
+      if (tMin <= 1.0 && tMax >= 0)
         OverlappingVectors()
       else
         NoIntersection()
@@ -47,8 +50,10 @@ case class EuclideanVector(a: Point, b: Point) {
       val t = ((q - p) cross s) / rCrossS
       if (0 <= t && t <= 1) {
         val u = qMinusPCrossR / rCrossS
-        if (0 <= t && t <= 1)
+        if (0 <= u && u <= 1) {
+          // The point can be calculated with t or u
           return IntersectionPoint(p + (r * t))
+        }
       }
     }
     NoIntersection()
