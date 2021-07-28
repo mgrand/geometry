@@ -56,6 +56,27 @@ case class EuclideanVector(a: Point, b: Point) {
     }
     NoIntersection()
   }
+
+  /**
+   * Return the direction of the vector as a slope (b,,y,,-a,,y,,)/(b,,x,,-a,,x,,).  A zero value of (b,,x,,-a,,x,,) is
+   * treated as a special case depending on the value of the numerator. if b,,y,,-a,,y,, is
+   *   - positive return Double.PositiveInfinity
+   *   - zero return 0
+   *   - negative return Double.NegativeInfinity
+   * @return
+   */
+  def slope: Double = {
+    val xDelta = b.x - a.x
+    val yDelta = b.y - a.y
+    if (xDelta != 0.0)
+      yDelta/xDelta
+    else if (yDelta > 0.0)
+      Double.PositiveInfinity
+    else if (yDelta < 0.0)
+      Double.NegativeInfinity
+    else
+      0.0
+  }
 }
 
 
