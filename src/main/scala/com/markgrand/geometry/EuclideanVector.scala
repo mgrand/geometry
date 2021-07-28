@@ -42,8 +42,8 @@ case class EuclideanVector(a: Point, b: Point) {
     if (Math.isZero(rCrossS))
       if (Math.isZero(qMinusPCrossR)) // if vectors are collinear
         return collinear()
-      else // parallel and non-intersecting
-        return NoIntersection()
+      else // parallel therefore non-intersecting
+        return Parallel()
     else {
       val t = ((q - p) cross s) / rCrossS
       if (0 <= t && t <= 1) {

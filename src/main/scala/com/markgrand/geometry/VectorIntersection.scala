@@ -9,7 +9,16 @@ sealed abstract class VectorIntersection
 /**
  * Represent the intersection of two line segments that do not share any common points.
  */
-case class NoIntersection() extends VectorIntersection
+class NoIntersection() extends VectorIntersection
+
+object NoIntersection {
+  def apply():NoIntersection = new NoIntersection()
+}
+
+/**
+ * Recognize parallel vectors as a special case of NoIntersection
+ */
+case class Parallel() extends NoIntersection
 
 /**
  * Represent the common point shared by two line segments that share a single point. They may intersect or be colinear

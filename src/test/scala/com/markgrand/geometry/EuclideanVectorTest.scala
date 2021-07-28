@@ -38,11 +38,14 @@ class EuclideanVectorTest extends AnyFreeSpec {
         }
       }
     }
-    "Given two parallel vectors, they should have no intersection" in {
-      assertResult(NoIntersection()) {
+    "Given two parallel vectors, they should be recognized as parallel" in {
+      assertResult(Parallel()) {
         v1.intersection(EuclideanVector(Point(1, 2), Point(3, 4)))
         v2.intersection(EuclideanVector(Point(-1, -2), Point(-3, -4)))
       }
+    }
+    "Given two non-parallel vectors" - {
+
     }
   }
 
