@@ -78,6 +78,9 @@ case class EuclideanVector(a: Point, b: Point) {
       0.0
   }
 
+  /**
+   * The magnitude of the vector as a positive scalar
+   */
   def magnitude: Double = {
     val xDelta = b.x - a.x
     val yDelta = b.y - a.y

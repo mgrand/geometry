@@ -106,4 +106,19 @@ class EuclideanVectorTest extends AnyFreeSpec {
       }
     }
   }
+
+  "magnitude" in {
+    assertResult(java.lang.Math.sqrt(8.0)) {
+      v1.magnitude
+    }
+    assertResult(java.lang.Math.sqrt(8.0)) {
+      v2.magnitude
+    }
+    assertResult(java.lang.Math.sqrt(8.0)) {
+      v3.magnitude
+    }
+    assertResult(java.lang.Math.sqrt(8.0)) {
+      v4.magnitude
+    }
+  }
 }
