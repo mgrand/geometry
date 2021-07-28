@@ -26,5 +26,12 @@ class Rectangle2DTest extends AnyFreeSpec {
         v1 intersectionPoints v2
       }
     }
+    "Rectangles that do intersect should produce a correct set of intersection points" in {
+      val v1 = Rectangle2D(Point(-2, 2), Point(2, 2), Point(2, -2), Point(-2,-2))
+      val v2 = Rectangle2D(Point(3, 0), Point(6, 3), Point(3, 6), Point(0,3))
+      assertResult(Set(Point(1,2), Point(2, 1))) {
+        v1 intersectionPoints v2
+      }
+    }
   }
 }
