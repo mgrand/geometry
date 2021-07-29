@@ -11,7 +11,7 @@ import scala.collection.mutable
  *
  *              @param a A corner point
  */
-class Rectangle2D(a: Point, b: Point, c: Point, d: Point) {
+class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
   private val s1 = EuclideanVector(a, b)
   private val s2 = EuclideanVector(b, c)
   private val s3 = EuclideanVector(c, d)
@@ -63,6 +63,45 @@ class Rectangle2D(a: Point, b: Point, c: Point, d: Point) {
     addIntersections(s3)
     addIntersections(s4)
     builder.result()
+  }
+
+  /**
+   * Return true if this rectangle contains the given point.
+   * @param p the point to check
+   * @return True if the point is contained in this rectangle; otherwise false.
+   */
+  def contains(p: Point): Boolean = {
+    def vectorIntersectsEdge(v: EuclideanVector, edge: EuclideanVector, corner: Point): Boolean = {
+      v intersection edge match {
+        case p: IntersectionPoint => p.point != corner
+        case NoIntersection => false
+        case _: OverlappingVectors => true
+      }
+    }
+    def vectorIntersectAnyEdge(v: EuclideanVector, corner: Point): Boolean ={
+      val intersectsS1 = vectorIntersectsEdge(v, s1, corner)
+      val intersectsS2 = vectorIntersectsEdge(v, s2, corner)
+      val intersectsS3 = vectorIntersectsEdge(v, s3, corner)
+      val intersectsS4 = vectorIntersectsEdge(v, s4, corner)
+      intersectsS1 || intersectsS2 || intersectsS3 || intersectsS4
+    }
+    // If none of the lines from the given point to the four corners of the rectangle intersect an edge of the
+    // rectangle, then the point is contained in the rectangle
+    if (p == a || p == b || p == c || p == d)
+      return false
+    !vectorIntersectAnyEdge(EuclideanVector(p, a), a) && !vectorIntersectAnyEdge(EuclideanVector(p, b), b) &&
+      !vectorIntersectAnyEdge(EuclideanVector(p, c), c) && !vectorIntersectAnyEdge(EuclideanVector(p, d), d)
+  }
+
+  /**
+   * Determine if this rectangle contains the given rectangle
+   * @param r The rectangle that may be contained by this rectangle
+   * @return true if this rectangle contains the given rectangle; otherwise false.
+   */
+  def contains(r: Rectangle2D): Boolean = {
+    // if an arbitrary corner of the given rectangle is contained by this rectangle and the two rectangles do not
+    // intersect, then this rectangle contains the given rectangle.
+    contains(r.a) && intersectionPoints(r).isEmpty
   }
 }
 
