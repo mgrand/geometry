@@ -109,7 +109,12 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
    * @param r The rectangle that may be adjacent to this rectangle
    * @return True if the given rectangle is adjacent to this one; otherwise false.
    */
-  def adjacent(r: Rectangle2D): Boolean = ???
+  def adjacent(r: Rectangle2D): Boolean = {
+    def sideOverlapsWithOtherRectangle(s: EuclideanVector): Boolean = {
+      s.overlaps(r.s1) || s.overlaps(r.s2) || s.overlaps(r.s3) || s.overlaps(r.s4)
+    }
+    sideOverlapsWithOtherRectangle(s1) || sideOverlapsWithOtherRectangle(s2) || sideOverlapsWithOtherRectangle(s3) || sideOverlapsWithOtherRectangle(s4)
+  }
 }
 
 object Rectangle2D {
