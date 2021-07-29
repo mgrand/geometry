@@ -7,9 +7,9 @@ import scala.collection.mutable
  * rectangles are defined by four vectors that represent the edges.
  * <p>
  * The four corner points must be distinct and define a quadrilateral whose opposite sides are of equal
- *              length and whose corners are right angles.
+ * length and whose corners are right angles.
  *
- *              @param a A corner point
+ * @param a A corner point
  */
 class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
   private val s1 = EuclideanVector(a, b)
@@ -46,18 +46,21 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
    */
   def intersectionPoints(that: Rectangle2D): Set[Point] = {
     val builder = Set.newBuilder[Point]
+
     def addIntersection(v1: EuclideanVector, v2: EuclideanVector): Unit = {
       v1 intersection v2 match {
-        case p :IntersectionPoint => builder += p.point
+        case p: IntersectionPoint => builder += p.point
         case _ =>
       }
     }
+
     def addIntersections(v: EuclideanVector): Unit = {
       addIntersection(v, that.s1)
       addIntersection(v, that.s2)
       addIntersection(v, that.s3)
       addIntersection(v, that.s4)
     }
+
     addIntersections(s1)
     addIntersections(s2)
     addIntersections(s3)
@@ -67,6 +70,7 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
 
   /**
    * Return true if this rectangle contains the given point.
+   *
    * @param p the point to check
    * @return True if the point is contained in this rectangle; otherwise false.
    */
@@ -78,7 +82,8 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
         case _: OverlappingVectors => true
       }
     }
-    def vectorIntersectAnyEdge(v: EuclideanVector, corner: Point): Boolean ={
+
+    def vectorIntersectAnyEdge(v: EuclideanVector, corner: Point): Boolean = {
       val intersectsS1 = vectorIntersectsEdge(v, s1, corner)
       val intersectsS2 = vectorIntersectsEdge(v, s2, corner)
       val intersectsS3 = vectorIntersectsEdge(v, s3, corner)
@@ -95,6 +100,7 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
 
   /**
    * Determine if this rectangle contains the given rectangle
+   *
    * @param r The rectangle that may be contained by this rectangle
    * @return true if this rectangle contains the given rectangle; otherwise false.
    */
@@ -106,6 +112,7 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
 
   /**
    * Determine if this rectangle is adjacent to the given rectangle
+   *
    * @param r The rectangle that may be adjacent to this rectangle
    * @return True if the given rectangle is adjacent to this one; otherwise false.
    */
@@ -113,6 +120,7 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
     def sideOverlapsWithOtherRectangle(s: EuclideanVector): Boolean = {
       s.overlaps(r.s1) || s.overlaps(r.s2) || s.overlaps(r.s3) || s.overlaps(r.s4)
     }
+
     sideOverlapsWithOtherRectangle(s1) || sideOverlapsWithOtherRectangle(s2) || sideOverlapsWithOtherRectangle(s3) || sideOverlapsWithOtherRectangle(s4)
   }
 }
