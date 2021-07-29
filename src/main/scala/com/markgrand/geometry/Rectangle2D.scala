@@ -103,6 +103,13 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
     // intersect, then this rectangle contains the given rectangle.
     contains(r.a) && intersectionPoints(r).isEmpty
   }
+
+  /**
+   * Determine if this rectangle is adjacent to the given rectangle
+   * @param r The rectangle that may be adjacent to this rectangle
+   * @return True if the given rectangle is adjacent to this one; otherwise false.
+   */
+  def adjacent(r: Rectangle2D): Boolean = ???
 }
 
 object Rectangle2D {
