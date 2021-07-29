@@ -9,7 +9,7 @@ I was asked to write code that could tell if two rectangles intersect
 ![adjacent2.png](documentation/resources/adjacent2.png)) or have a contains
 relationship (![contains1.png](documentation/resources/contains1.png)).
 
-Though the example drawings showed rectangles that have the same orientation
+Though the example drawings show rectangles that have the same orientation
 (the edges of the rectange are parallel or perpendicular to each other),
 this was not included as a constraint in the problem statement.
 Since there was nothing in the problem description that constrained the
