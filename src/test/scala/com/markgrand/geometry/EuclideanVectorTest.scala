@@ -72,6 +72,17 @@ class EuclideanVectorTest extends AnyFreeSpec {
     }
   }
 
+  "overlaps" - {
+    "if they don't overlap, the method should return false" in {
+      assert(!v1.overlaps(EuclideanVector(Point(4, 4), Point(6, 6))))
+      assert(!v1.overlaps(EuclideanVector(Point(-8, -4), Point(-6, -6))))
+    }
+    "If they do overlap, then the method should return true" in {
+      assert(v1.overlaps(EuclideanVector(Point(2, 2), Point(4, 4))))
+      assert(v2.overlaps(EuclideanVector(Point(-2, -2), Point(-4, -4))))
+    }
+  }
+
   "slope" - {
     "Vectors with a non-zero x delta should return the expected numeric value" in {
       assertResult(1.0) {

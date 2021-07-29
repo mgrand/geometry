@@ -58,6 +58,18 @@ case class EuclideanVector(a: Point, b: Point) {
   }
 
   /**
+   * Determine if the given vector overlaps (has more than one point in common with) this vector.
+   * @param that the other vector
+   * @return True if there is an overlap; otherwise false.
+   */
+  def overlaps(that: EuclideanVector): Boolean = {
+    intersection(that) match {
+      case _: OverlappingVectors =>true
+      case _ => false
+    }
+  }
+
+  /**
    * Return the direction of the vector as a slope (b,,y,,-a,,y,,)/(b,,x,,-a,,x,,).  A zero value of (b,,x,,-a,,x,,) is
    * treated as a special case depending on the value of the numerator. if b,,y,,-a,,y,, is
    *   - positive return Double.PositiveInfinity
