@@ -36,7 +36,7 @@ case class Point (x: Double, y: Double) {
    * [[https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect]]
    *
    * @param that the other point
-   * @return the cross product
+   * @return the cross product, which is actually a scalar value.
    */
   def cross(that: Point): Double = this.x*that.y - this.y*that.x
 
