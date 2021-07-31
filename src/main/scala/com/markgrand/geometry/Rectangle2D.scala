@@ -1,7 +1,5 @@
 package com.markgrand.geometry
 
-import scala.collection.mutable
-
 /**
  * Represent a 2 dimensional rectangle whose sides may or may not be parallel or perpendicular to the x or y axis. These
  * rectangles are defined by four vectors that represent the edges.
@@ -28,7 +26,7 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
       slope2 == Double.PositiveInfinity || slope2 == Double.NegativeInfinity
     else if (slope1 == Double.PositiveInfinity || slope1 == Double.NegativeInfinity)
       slope1 == 0
-    else
+    else // If the two vectors are at right angles, slope1 == 1/slope2
       Math.isEqual((slope1 * slope2).abs, 1.0)
   }
 
@@ -43,7 +41,7 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
    * considered to be intersecting.
    *
    * @param that The other rectangle
-   * @return the set of intersction points. This will be empty if there are none.
+   * @return the set of intersection points. This will be empty if there are none.
    */
   def intersectionPoints(that: Rectangle2D): Set[Point] = {
     val builder = Set.newBuilder[Point]
@@ -93,8 +91,6 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
     }
     // If none of the lines from the given point to the four corners of the rectangle intersect an edge of the
     // rectangle, then the point is contained in the rectangle
-    if (p == a || p == b || p == c || p == d)
-      return false
     !vectorIntersectAnyEdge(EuclideanVector(p, a), a) && !vectorIntersectAnyEdge(EuclideanVector(p, b), b) &&
       !vectorIntersectAnyEdge(EuclideanVector(p, c), c) && !vectorIntersectAnyEdge(EuclideanVector(p, d), d)
   }

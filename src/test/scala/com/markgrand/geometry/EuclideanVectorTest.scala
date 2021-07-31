@@ -65,6 +65,9 @@ class EuclideanVectorTest extends AnyFreeSpec {
         assertResult(IntersectionPoint(Point(2.0, 2.0))) {
           v1.intersection(EuclideanVector(Point(1, 3), Point(3, 1)))
         }
+        assertResult(IntersectionPoint(Point(3, 3))) {
+          v1.intersection(EuclideanVector(Point(3, 3), Point(5,4)))
+        }
         assertResult(IntersectionPoint(Point(-2.0, -2.0))) {
           v2.intersection(EuclideanVector(Point(-1, -3), Point(-3, -1)))
         }
