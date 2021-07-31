@@ -10,6 +10,7 @@ import scala.collection.mutable
  * length and whose corners are right angles.
  *
  * @param a A corner point
+ * @author Mark Grand
  */
 class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
   private val s1 = EuclideanVector(a, b)

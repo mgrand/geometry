@@ -15,10 +15,8 @@ case class EuclideanVector(a: Point, b: Point) {
    * Compute the intersection between two line segments. This uses the algorithm documented in
    * [[https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect]].
    * @param that the other line segment
-   * @return NoIntersection, LineSegmentsIntersection or OverlappingLineSegment
-   * @see NoIntersection
-   * @see LineSegmentsIntersection
-   * @see OverlappingLineSegment
+   * @return [[IntersectionPoint]], [[NoIntersection]], [[Parallel]] (a subclass of NoIntersection), or
+   *         [[OverlappingVectors]].
    */
   def intersection(that: EuclideanVector): VectorIntersection = {
     val p = a
@@ -28,6 +26,7 @@ case class EuclideanVector(a: Point, b: Point) {
     val rCrossS = r cross s
     val qMinusPCrossR = (q - p) cross r
 
+    // Handle the case of collinear vectors
     def collinear() = {
       val t0 = ((q - p) dot r) / (r dot r)
       val t1 = t0 + (s dot r) / (r dot r)
@@ -44,7 +43,7 @@ case class EuclideanVector(a: Point, b: Point) {
         return collinear()
       else // parallel therefore non-intersecting
         return Parallel()
-    else {
+    else { // Not collinear or parallel
       val t = ((q - p) cross s) / rCrossS
       if (0 <= t && t <= 1) {
         val u = qMinusPCrossR / rCrossS
@@ -72,10 +71,9 @@ case class EuclideanVector(a: Point, b: Point) {
   /**
    * Return the direction of the vector as a slope (b,,y,,-a,,y,,)/(b,,x,,-a,,x,,).  A zero value of (b,,x,,-a,,x,,) is
    * treated as a special case depending on the value of the numerator. if b,,y,,-a,,y,, is
-   *   - positive return Double.PositiveInfinity
-   *   - zero return 0
-   *   - negative return Double.NegativeInfinity
-   * @return
+   *   - positive <br>return Double.PositiveInfinity
+   *   - zero <br>return 0
+   *   - negative <br>return Double.NegativeInfinity
    */
   def slope: Double = {
     val xDelta = b.x - a.x
