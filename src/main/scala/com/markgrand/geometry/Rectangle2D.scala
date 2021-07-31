@@ -117,7 +117,6 @@ class Rectangle2D(val a: Point, val b: Point, val c: Point, val d: Point) {
     def sideOverlapsWithOtherRectangle(s: EuclideanVector): Boolean = {
       s.overlaps(r.s1) || s.overlaps(r.s2) || s.overlaps(r.s3) || s.overlaps(r.s4)
     }
-
     sideOverlapsWithOtherRectangle(s1) || sideOverlapsWithOtherRectangle(s2) || sideOverlapsWithOtherRectangle(s3) || sideOverlapsWithOtherRectangle(s4)
   }
 }

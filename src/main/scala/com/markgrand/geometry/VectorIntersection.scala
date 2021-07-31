@@ -23,13 +23,13 @@ object NoIntersection extends NoIntersection {
 case class Parallel() extends NoIntersection
 
 /**
- * Represent the common point shared by two line segments that share a single point. They may intersect or be colinear
+ * Represent the common point shared by two line segments that share a single point. They may intersect or be collinear
  * and share a single overlapping point.
  * @param point the common point
  */
 case class IntersectionPoint(point: Point) extends VectorIntersection
 
 /**
- * Represent an overlap between two overlapping colinear line segments.
+ * Represent an overlap between two overlapping collinear line segments.
  */
 case class OverlappingVectors() extends VectorIntersection
