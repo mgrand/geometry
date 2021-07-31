@@ -31,7 +31,7 @@ case class Point (x: Double, y: Double) {
   def *(n: Double): Point = Point(x*n, y*n)
 
   /**
-   * Define the 2-dimensional vector cross product v × w to be v,,x,,w,,y,, − v,,y,,w,,x,,
+   * Define the 2-dimensional cross product of two points v × w to be v,,x,,w,,y,, − v,,y,,w,,x,,
    * as described in
    * [[https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect]]
    *
@@ -41,7 +41,7 @@ case class Point (x: Double, y: Double) {
   def cross(that: Point): Double = this.x*that.y - this.y*that.x
 
   /**
-   * The dot product
+   * The dot product of two points v × w is v,,x,,w,,x,, + v,,y,,w,,y,,
    * @param that the other point
    * @return the dot product
    */
