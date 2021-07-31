@@ -6,7 +6,7 @@ I was asked to write code that could tell if two rectangles intersect
 ![intersect2.png](documentation/resources/intersect2.png), 
 ![intersect3.png](documentation/resources/intersect3.png), ...) are adjacent 
 (![adjacent1.png](documentation/resources/adjacent1.png), 
-![adjacent2.png](documentation/resources/adjacent2.png)) or have a contains
+![adjacent2.png](documentation/resources/adjacent2.png), ...) or have a contains
 relationship (![contains1.png](documentation/resources/contains1.png)).
 
 Though the example drawings show rectangles that have the same orientation
